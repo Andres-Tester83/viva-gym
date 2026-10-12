@@ -172,7 +172,7 @@ export default function MemberView() {
           </div>
         </section>
 
-        {/* Quick Stats Grid */}
+        {/* Quick Stats Grid con el efecto de borde de gradiente cónico giratorio */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard
             label="Racha Actual"
@@ -181,6 +181,7 @@ export default function MemberView() {
             icon={<Trophy className="size-4" />}
             accent="orange"
             hint="¡Estás en tu mejor récord del mes!"
+            conicBorder={true}
           />
           <StatCard
             label="Peso Actual"
@@ -189,6 +190,7 @@ export default function MemberView() {
             icon={<TrendingDown className="size-4" />}
             accent="cyan"
             hint="-3.2 kg desde el inicio"
+            conicBorder={true}
           />
           <StatCard
             label="IMC Estimado"
@@ -197,6 +199,7 @@ export default function MemberView() {
             icon={<TrendingDown className="size-4" />}
             accent="teal"
             hint="Estatura: 167 cm"
+            conicBorder={true}
           />
           <StatCard
             label="Asistencias (Mes)"
@@ -205,6 +208,7 @@ export default function MemberView() {
             icon={<Users className="size-4" />}
             accent="blue"
             hint="86% de asistencia a reservas"
+            conicBorder={true}
           />
         </section>
 

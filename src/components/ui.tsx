@@ -23,7 +23,7 @@ export function ClassIcon({ type, className = "size-5" }: { type: ClassType; cla
 }
 
 export function StatCard({
-  label, value, unit, hint, icon, accent = "cyan", delay = 0,
+  label, value, unit, hint, icon, accent = "cyan", delay = 0, conicBorder = false,
 }: {
   label: string;
   value: string;
@@ -32,6 +32,7 @@ export function StatCard({
   icon: React.ReactNode;
   accent?: "cyan" | "orange" | "teal" | "blue";
   delay?: number;
+  conicBorder?: boolean;
 }) {
   const accents = {
     cyan: "text-viva-cyan bg-viva-cyan/10",
@@ -39,6 +40,32 @@ export function StatCard({
     teal: "text-viva-teal bg-viva-teal/10",
     blue: "text-[#7ea6ff] bg-viva-blue/20",
   };
+
+  const cardContent = (
+    <div className="p-5 flex flex-col justify-between h-full">
+      <div className="flex items-start justify-between">
+        <p className="text-sm text-ink-400">{label}</p>
+        <span className={`grid size-9 place-items-center rounded-xl ${accents[accent]}`}>{icon}</span>
+      </div>
+      <p className="mt-3 font-display text-3xl font-bold tracking-tight tabular-nums">
+        {value}
+        {unit && <span className="ml-1 text-base font-medium text-ink-400">{unit}</span>}
+      </p>
+      {hint && <div className="mt-1 text-xs text-ink-400">{hint}</div>}
+    </div>
+  );
+
+  if (conicBorder) {
+    return (
+      <div
+        className="card-conic card-hover animate-fade-up shadow-xl shadow-viva-cyan/10"
+        style={{ animationDelay: `${delay}ms` }}
+      >
+        {cardContent}
+      </div>
+    );
+  }
+
   return (
     <div className="card card-hover animate-fade-up p-5" style={{ animationDelay: `${delay}ms` }}>
       <div className="flex items-start justify-between">
