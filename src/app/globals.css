@@ -94,33 +94,47 @@ body {
     @apply rounded-3xl border border-white/[0.07] bg-ink-900/70 backdrop-blur-xl;
     box-shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 20px 50px -25px rgb(0 0 0 / 0.6);
   }
+  /* ── Rotating Glow Border idéntico a la muestra del video ── */
   .card-conic {
     position: relative;
     border-radius: 1.5rem;
-    overflow: hidden;
-    padding: 1.5px;
     background: transparent;
+    transition: transform 0.3s ease;
   }
-  .card-conic::before {
+  .card-conic:hover {
+    transform: translateY(-2px);
+  }
+  /* Capa 1: El borde nítido que rota */
+  .card-conic::before,
+  /* Capa 2: El resplandor difuminado (glow) que rota detrás */
+  .card-conic::after {
     content: "";
     position: absolute;
-    inset: -50%;
+    inset: -2px;
+    border-radius: inherit;
     background: conic-gradient(
       from var(--a),
-      #4bbecd,
-      #0ca2b1,
-      #2252aa,
-      #fe6e10,
-      #ff9a57,
-      #4bbecd
+      #4bbecd 0deg,
+      #0ca2b1 60deg,
+      #2252aa 140deg,
+      transparent 180deg,
+      #fe6e10 260deg,
+      #ff9a57 320deg,
+      #4bbecd 360deg
     );
     animation: spin-gradient 4s linear infinite;
     z-index: 0;
   }
+  /* El resplandor neon / aurora detrás de la tarjeta */
+  .card-conic::after {
+    filter: blur(16px);
+    opacity: 0.75;
+  }
+  /* El contenido interno que tapa el centro y deja solo el marco brillante visible */
   .card-conic > * {
     position: relative;
     z-index: 1;
-    border-radius: calc(1.5rem - 1.5px);
+    border-radius: calc(1.5rem - 2px);
     background: #081227;
   }
   .card-hover {
